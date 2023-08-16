@@ -1,0 +1,98 @@
+﻿@typeparam Titem
+
+
+
+@if (MyList is null)
+
+{
+
+    @if (Loading is null)
+    // Le grabamos lo que va mostrar en el Loading
+
+    {
+
+        <div class="align-items-center">
+
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" />
+
+        </div>
+
+    }
+
+    else
+
+    {
+
+        @Loading
+
+    }
+
+}
+
+else if (MyList.Count == 0)
+
+{
+
+    @if (NoRecords is null)
+
+    {
+
+        <p>No hay registros para mostrar...</p>
+
+    }
+
+    else
+
+    {
+
+        @NoRecords
+
+    }
+
+}
+
+else
+
+{
+
+    @Body
+
+}
+
+
+
+@code {
+
+    [Parameter]
+
+    public RenderFragment? Loading { get; set; }
+    // Acá hace una carga de la página 
+
+
+
+    [Parameter]
+
+    public RenderFragment? NoRecords { get; set; }
+    // Acá va mostrar que no hay registros
+
+
+
+    [Parameter]
+
+    [EditorRequired]
+
+    public RenderFragment Body { get; set; } = null!;
+    // Manda un cuerpo en caso que encuentre registros
+
+
+
+    [Parameter]
+
+    [EditorRequired]
+
+    public List<Titem> MyList { get; set; } = null!;
+    // Saca la lista
+
+}
+
+
