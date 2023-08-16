@@ -25,8 +25,18 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseAuthorization(); app.UseCors(x => x
+.AllowAnyMethod()
+.AllowAnyHeader()
+.SetIsOriginAllowed(origin => true)
+.AllowCredentials());
+
+// Los Cors se usan para que todo el mundo no pueda consumir mi API, solo quien yo diga
+// eso incluye metodos, encabezados, credenciales, respuestas.
+
 
 app.MapControllers();
+
+
 
 app.Run();
